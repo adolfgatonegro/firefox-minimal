@@ -8,7 +8,7 @@ tab bar becomes visible.
 
 ![](./screenshots/multitab.png)
 
-In private windows the tab bar will remain visible, and an eye   icon will be
+In private windows the tab bar will always be visible, and an eye icon will be
 drawn next to the tab name, to make it easier to distinguish between regular
 and private windows.
 
