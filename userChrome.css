@@ -1,12 +1,12 @@
 :root {
-	--tab-active-bg-color: #057;		/* background color of an active tab */
-	--tab-inactive-bg-color: #333;		/* background color of an inactive tab */
-	--tab-active-fg-fallback-color: #eee;	/* color of text in an active tab without a container */
-	--tab-inactive-fg-fallback-color: #888;	/* color of text in an inactive tab without a container */
+	--tab-active-bg-color: #262639;		/* background color of an active tab */
+	--tab-inactive-bg-color: #0a0a20;		/* background color of an inactive tab */
+	--tab-active-fg-fallback-color: #c1c1d1;	/* color of text in an active tab without a container */
+	--tab-inactive-fg-fallback-color: #6c6c93;	/* color of text in an inactive tab without a container */
 
 	/* try increasing if you encounter problems */
 	--urlbar-height-setting: 24px;
-	--tab-min-height: 16px !important;
+	--tab-min-height: 20px !important;
 
 	/* I don't recommend you touch this unless you know what you're doing */
 	--arrowpanel-menuitem-padding: 2px !important;
@@ -19,7 +19,7 @@
 /* --- GENERAL DEBLOAT ---------------------------------- */
 
 /* Bottom left page loading status or url preview */
-#statuspanel { display: none !important; }
+/* #statuspanel { display: none !important; } */
 
 /* Hide dropdown that appears when you type in search bar */
 .autocomplete-history-popup, panel[type=autocomplete-richlistbox], panel[type=autocomplete] {
@@ -50,7 +50,7 @@ toolbar .toolbarbutton-1 { padding: 0 0 !important; }
 
 #nav-bar, #navigator-toolbox {
 	border-width: 0 !important;
-	--toolbar-field-focus-border-color: #42414d;
+	--toolbar-field-focus-border-color: #262639;
 }
 
 #urlbar-container {
@@ -59,7 +59,7 @@ toolbar .toolbarbutton-1 { padding: 0 0 !important; }
 	margin-right: 0 !important;
 	padding-top: 0 !important;
 	padding-bottom: 0 !important;
-	font-family: 'Jetbrains Mono', monospace;
+	font-family: monospace;
 	font-size: 11px;
 }
 
@@ -129,10 +129,18 @@ tab:not([selected="true"]) {
 }
 
 tab {
-	font-family: 'Jetbrains Mono', monospace;
+	font-family: monospace;
 	font-weight: bold;
 	border: none !important;
 }
+
+/* Code for Firefox 110+ taken from: */
+/* https://support.mozilla.org/en-US/questions/1394300#answer-1565950 */
+/* Hide Tab bar with only one Tab - [110] */
+#tabbrowser-tabs .tabbrowser-tab:only-of-type,
+#tabbrowser-tabs .tabbrowser-tab:only-of-type + #tabbrowser-arrowscrollbox-periphery{ display:none !important; }
+#tabbrowser-tabs, #tabbrowser-arrowscrollbox {min-height:0!important;}
+#alltabs-button {display:none !important;}
 
 /* safari style tab width */
 .tabbrowser-tab[fadein] { max-width: 100vw !important; border: none }
@@ -141,7 +149,7 @@ tab {
 #tabbrowser-tabs .tabbrowser-tab .tab-close-button { display: none !important; }
 
 /* disable favicons in tab */
-/* .tab-icon-stack:not([pinned]) { display: none !important; } */
+.tab-icon-stack:not([pinned]) { display: none !important; }
 
 .tabbrowser-tab {
 	/* remove border between tabs */
@@ -214,7 +222,9 @@ tab {
 	transform: translateY(0);
 	opacity: 1;
 }
-
+#tabs-newtab-button {
+     display:none !important;
+}
 /* show on hover */
 /* #titlebar:hover ~ .browser-toolbar,
 #nav-bar:hover,

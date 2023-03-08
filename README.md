@@ -1,14 +1,17 @@
-# A minimalist userChrome.css
+# Gatonegro's customised minimal userChrome.css
 
-![](./screenshots/basic.png)
+![](./screenshots/default.png)
 
-With navbar shown:
+Tab bar hidden when only a single tab is open:
 
-![](./screenshots/urlbar.png)
+![](./screenshots/singletab.png)
 
 Color of text in a tab is determined by its container. If a tab has no
 container, fallback colors are used. You can change the basic colorscheme by
 adjusting values of variables defined at the top of `userChrome.css`.
+
+If only one tab is open, the tab bar will collapse. The minimal,
+qutebrowser-inspired tab bar becomes visible when at least two tabs exist.
 
 ## How to use
 
@@ -60,5 +63,4 @@ uncomment the code there. Otherwise you may only toggle the navbar by pressing
 
 ## Credit
 
-This config is a (soft) fork of
-[aadilayub's](https://github.com/aadilayub/firefox-i3wm-theme).
+This `userChrome.css` is a fork of [Dook97's firefox-qutebrowser-userchrome](https://github.com/Dook97/firefox-qutebrowser-userchrome), which is in turn a (soft) fork of [aadilayub's firefox-i3wm-theme](https://github.com/aadilayub/firefox-i3wm-theme).
