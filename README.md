@@ -1,17 +1,23 @@
-# Gatonegro's customised minimal userChrome.css
+# Gatonegro's Minimal Firefox
 
 ![](./screenshots/default.png)
 
-Tab bar hidden when only a single tab is open:
+This configuration hides the tab bar when only one tab is open, removing every
+trace of the Firefox UI. With two or more tabs open, the qutebrowser-inspired
+tab bar becomes visible.
 
-![](./screenshots/singletab.png)
+![](./screenshots/multitab.png)
+
+In private windows the tab bar will remain visible, and an eye   icon will be
+drawn next to the tab name, to make it easier to distinguish between regular
+and private windows.
+
+![](./screenshots/private.png)
 
 Color of text in a tab is determined by its container. If a tab has no
-container, fallback colors are used. You can change the basic colorscheme by
-adjusting values of variables defined at the top of `userChrome.css`.
-
-If only one tab is open, the tab bar will collapse. The minimal,
-qutebrowser-inspired tab bar becomes visible when at least two tabs exist.
+container, fallback colors are used. The private tab icon, its colour, and the
+fallback colourscheme for non-container tabs can all be adjusted via the
+variables defined at the top of `userChrome.css`.
 
 ## How to use
 
@@ -63,4 +69,5 @@ uncomment the code there. Otherwise you may only toggle the navbar by pressing
 
 ## Credit
 
-This `userChrome.css` is a fork of [Dook97's firefox-qutebrowser-userchrome](https://github.com/Dook97/firefox-qutebrowser-userchrome), which is in turn a (soft) fork of [aadilayub's firefox-i3wm-theme](https://github.com/aadilayub/firefox-i3wm-theme).
+This `userChrome.css` is a fork of [Dook97's userChrome.css](https://github.com/Dook97/firefox-qutebrowser-userchrome),
+which is in turn a (soft) fork of [aadilayub's theme](https://github.com/aadilayub/firefox-i3wm-theme).

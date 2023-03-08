@@ -3,6 +3,8 @@
 	--tab-inactive-bg-color: #0a0a20;		/* background color of an inactive tab */
 	--tab-active-fg-fallback-color: #c1c1d1;	/* color of text in an active tab without a container */
 	--tab-inactive-fg-fallback-color: #6c6c93;	/* color of text in an inactive tab without a container */
+	--tab-private-icon: ""; /* icon to be displayed to the left of the tab titles in private windows */
+	--tab-private-icon-colour: #00ffe0;	/* colour of the private icon */
 
 	/* try increasing if you encounter problems */
 	--urlbar-height-setting: 24px;
@@ -130,7 +132,7 @@ tab:not([selected="true"]) {
 
 tab {
 	font-family: monospace;
-	font-weight: bold;
+	font-weight: normal;
 	border: none !important;
 }
 
@@ -225,6 +227,12 @@ tab {
 #tabs-newtab-button {
      display:none !important;
 }
+
+/* keep private window tab bar and indicator visible */ 
+#main-window[privatebrowsingmode] #tabbrowser-tabs .tabbrowser-tab{display:block !important;}
+#main-window[privatebrowsingmode] #tabbrowser-tabs .tabbrowser-tab .tab-content:before{content: var(--tab-private-icon); margin-right: 1em; color: var(--tab-private-icon-colour)}
+#private-browsing-indicator-with-label > label { display: none; }
+
 /* show on hover */
 /* #titlebar:hover ~ .browser-toolbar,
 #nav-bar:hover,
