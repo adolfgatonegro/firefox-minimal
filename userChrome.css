@@ -5,9 +5,10 @@
 	--tab-inactive-fg-fallback-color: #6c6c93;	/* color of text in an inactive tab without a container */
 	--tab-private-icon: ""; /* icon to be displayed to the left of the tab titles in private windows */
 	--tab-private-icon-colour: #00ffe0;	/* colour of the private icon */
+	--urlbar-bg-color: #262639;		/* background color of url bar */
 
 	/* try increasing if you encounter problems */
-	--urlbar-height-setting: 24px;
+	--urlbar-height-setting: 25px;
 	--tab-min-height: 25px !important;
 
 	/* I don't recommend you touch this unless you know what you're doing */
@@ -78,6 +79,7 @@ toolbar .toolbarbutton-1 { padding: 0 0 !important; }
 }
 
 #urlbar-input-container {
+	background-color: var(--urlbar-bg-color) !important;
 	border-width: 0 !important;
 	margin-left: 0.5em !important;
 }
