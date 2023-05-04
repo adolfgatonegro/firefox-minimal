@@ -100,7 +100,7 @@ toolbar .toolbarbutton-1 { padding: 0 0 !important; }
 #pageActionButton { display: none; }
 #pocket-button { display: none; }
 #urlbar-zoom-button { display: none; }
-#tracking-protection-icon-container { display: none !important; }
+/* #tracking-protection-icon-container { display: none !important; } */
 #reader-mode-button{ display: none !important; }
 #star-button { display: none; }
 
