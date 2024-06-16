@@ -22,12 +22,12 @@
 /* --- GENERAL DEBLOAT ---------------------------------- */
 
 /* Bottom left page loading status or url preview */
-/* #statuspanel { display: none !important; } */
+#statuspanel { display: none !important; } */
 
 /* Hide dropdown that appears when you type in search bar */
-.autocomplete-history-popup, panel[type=autocomplete-richlistbox], panel[type=autocomplete] {
-	display: none !important;
-}
+/*.autocomplete-history-popup, panel[type=autocomplete-richlistbox], panel[type=autocomplete] {*/
+/*	display: none !important;*/
+/*}*/
 
 /* --- DEBLOAT NAVBAR ----------------------------------- */
 
@@ -46,14 +46,14 @@
 /* remove padding between toolbar buttons */
 toolbar .toolbarbutton-1 { padding: 0 0 !important; }
 
+/* add it back to the downloads button, otherwise it's too close to the urlbar */
+#downloads-button {
+	margin-left: 2px !important;
+}
+
 /* add padding to the right of the last button so that it doesn't touch the edge of the window */
 #PanelUI-menu-button {
 	padding: 0px 4px 0px 0px !important;
-}
-
-#nav-bar, #navigator-toolbox {
-	border-width: 0 !important;
-	--toolbar-field-focus-border-color: #262639;
 }
 
 #urlbar-container {
@@ -62,7 +62,7 @@ toolbar .toolbarbutton-1 { padding: 0 0 !important; }
 	margin-right: 0 !important;
 	padding-top: 0 !important;
 	padding-bottom: 0 !important;
-	font-family: monospace;
+	font-family: var(--urlbar-font, 'monospace');
 	font-size: 11px;
 }
 
@@ -73,20 +73,18 @@ toolbar .toolbarbutton-1 { padding: 0 0 !important; }
 	border-color: var(--lwt-toolbar-field-border-color, hsla(240,5%,5%,.25)) !important;
 }
 
-#urlbar-background {
-	border-width: 0 !important;
-	border-radius: 0 !important;
-}
-
-#urlbar-input-container {
-	background-color: var(--urlbar-bg-color) !important;
-	border-width: 0 !important;
-	margin-left: 0.5em !important;
-}
-
 #urlbar-input {
-	margin-left: 0.4em !important;
+	margin-left: 0.8em !important;
 	margin-right: 0.4em !important;
+}
+
+#navigator-toolbox {
+	border: none !important;
+}
+
+#nav-bar, #navigator-toolbox {
+	border-width: 0 !important;
+	--toolbar-field-focus-border-color: #262639;
 }
 
 /* weird hack to keep pop-up menus from overlapping with navbar */
@@ -94,6 +92,11 @@ toolbar .toolbarbutton-1 { padding: 0 0 !important; }
 #appMenu-popup { margin: 0 !important; }
 #customizationui-widget-panel { margin: 0 !important; }
 #unified-extensions-panel { margin: 0 !important; }
+
+/* make browser dialog boxes not overlap the navbar */
+:not(.content-prompt-dialog) > .dialogOverlay > .dialogBox:not(.spotlightBox) {
+	margin-top: 0px !important;
+}
 
 /* --- UNIFIED EXTENSIONS BUTTON ------------------------ */
 
@@ -110,13 +113,27 @@ toolbar .toolbarbutton-1 { padding: 0 0 !important; }
 	display: none !important;
 }
 
-/* reduce padding between the menu items */
-#unified-extensions-view > vbox > vbox > .unified-extensions-item { padding-block: 0px !important; }
-.unified-extensions-item-menu-button.subviewbutton { padding: 2px !important; }
-
 /* add 3px padding on the top and the bottom of the box */
 .panel-subview-body {
 	padding: 3px 0px !important;
+}
+
+#unified-extensions-view .toolbarbutton-icon {
+	padding: 0 !important;
+}
+
+.unified-extensions-item-contents {
+	line-height: 1 !important;
+	white-space: nowrap !important;
+}
+
+#unified-extensions-panel .unified-extensions-item {
+	margin-block: 0 !important;
+}
+
+.toolbar-menupopup :is(menu, menuitem), .subview-subheader, panelview
+.toolbarbutton-1, .subviewbutton, .widget-overflow-list .toolbarbutton-1 {
+	padding: 4px !important;
 }
 
 /* --- DEBLOAT URLBAR ----------------------------------- */
@@ -126,12 +143,13 @@ toolbar .toolbarbutton-1 { padding: 0 0 !important; }
 #pocket-button { display: none; }
 #urlbar-zoom-button { display: none; }
 /* #tracking-protection-icon-container { display: none !important; } */
-#reader-mode-button{ display: none !important; }
+/*#reader-mode-button{ display: none !important; }*/
 #star-button { display: none; }
+#star-button-box:hover { background: inherit !important; }
 
 /* this will remove the invisible box at the end of urlbar but also will
  * disable the Ctrl+D shortcut */
-#star-button-box { display: none; } */
+/*#star-button-box { display: none; }*/
 
 /* Go to arrow button at the end of the urlbar when searching */
 #urlbar-go-button { display: none; }
@@ -214,7 +232,7 @@ tab {
 /* remove dark space between pinned tab and first non-pinned tab */
 #tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs]) >
 #tabbrowser-arrowscrollbox >
-.tabbrowser-tab[first-visible-unpinned-tab] {
+.tabbrowser-tab:nth-child(1 of :not([pinned], [hidden])) {
 	margin-inline-start: 0px !important;
 }
 
@@ -234,11 +252,13 @@ tab {
 	min-height: 0 !important;
 	max-height: 0 !important;
 	height: 0 !important;
-	--moz-transform: scaleY(0) !important;
-	transform: scaleY(0) !important;
+	/*--moz-transform: scaleY(0) !important;*/
+	/*transform: scaleY(0) !important;*/
 }
 
-/* show on focus */
+/* show on focus - uncomment the line below this if you want cursor hover
+ * events to trigger the navbar  */
+#titlebar:hover ~ .browser-toolbar, #nav-bar:hover, 
 #nav-bar:focus-within {
 	--moz-transform: scale(1) !important;
 	transform: scale(1) !important;
