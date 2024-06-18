@@ -22,7 +22,7 @@
 /* --- GENERAL DEBLOAT ---------------------------------- */
 
 /* Bottom left page loading status or url preview */
-#statuspanel { display: none !important; } */
+#statuspanel { display: none !important; }
 
 /* Hide dropdown that appears when you type in search bar */
 /*.autocomplete-history-popup, panel[type=autocomplete-richlistbox], panel[type=autocomplete] {*/
