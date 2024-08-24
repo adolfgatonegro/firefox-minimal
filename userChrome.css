@@ -311,7 +311,7 @@ tab {
 
 /* show on focus - uncomment the line below this if you want cursor hover
  * events to trigger the navbar  */
-#titlebar:hover ~ .browser-toolbar, #nav-bar:hover,
+/* #titlebar:hover ~ .browser-toolbar, #nav-bar:hover, */
 #nav-bar:focus-within {
 	max-height: var(--urlbar-height-setting) !important;
 	height: var(--urlbar-height-setting) !important;
