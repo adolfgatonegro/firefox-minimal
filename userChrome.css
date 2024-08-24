@@ -1,14 +1,23 @@
 :root {
 	--tab-active-bg-color: #262639;		/* background color of an active tab */
-	--tab-inactive-bg-color: #0a0a20;		/* background color of an inactive tab */
+	--tab-inactive-bg-color: #0a0a15;		/* background color of an inactive tab */
 	--tab-active-fg-fallback-color: #c1c1d1;	/* color of text in an active tab without a container */
 	--tab-inactive-fg-fallback-color: #6c6c93;	/* color of text in an inactive tab without a container */
+	--urlbar-focused-bg-color: #262639;
+	--urlbar-not-focused-bg-color: #0a0a15;
+
+	--tab-active-fg-fallback-color: #c1c1d1;		/* color of text in an active tab without a container */
+	--tab-inactive-fg-fallback-color: #6c6c93;		/* color of text in an inactive tab without a container */
+	--toolbar-bgcolor: #262639 !important;
+	--tab-font: 'monospace';
+	--urlbar-font: 'monospace';
+
+	/* private mode icon and colour */
 	--tab-private-icon: ""; /* icon to be displayed to the left of the tab titles in private windows */
 	--tab-private-icon-colour: #00ffe0;	/* colour of the private icon */
-	--urlbar-bg-color: #262639;		/* background color of url bar */
 
 	/* try increasing if you encounter problems */
-	--urlbar-height-setting: 25px;
+	--urlbar-height-setting: 24px;
 	--tab-min-height: 25px !important;
 
 	/* I don't recommend you touch this unless you know what you're doing */
@@ -17,17 +26,39 @@
 	--arrowpanel-menuitem-border-radius: 0px !important;
 	--toolbarbutton-border-radius: 0px !important;
 	--toolbarbutton-inner-padding: 0px 2px !important;
+	--toolbar-field-focus-background-color: var(--urlbar-focused-bg-color) !important;
+	--toolbar-field-background-color: var(--urlbar-not-focused-bg-color) !important;
+	--toolbar-field-focus-border-color: transparent !important;
 }
 
 /* --- GENERAL DEBLOAT ---------------------------------- */
 
 /* Bottom left page loading status or url preview */
-#statuspanel { display: none !important; }
+/* #statuspanel { display: none !important; } */
 
-/* Hide dropdown that appears when you type in search bar */
-/*.autocomplete-history-popup, panel[type=autocomplete-richlistbox], panel[type=autocomplete] {*/
-/*	display: none !important;*/
-/*}*/
+#statuspanel-label {
+	border-radius: 0px !important; 
+	border: 0px !important;
+}
+
+#statuspanel {
+    position: absolute;
+    bottom: 1vh !important;
+    left: 1vw !important;
+	max-width: 50% !important;
+	justify-self: right !important;
+	padding-top: 0 !important;
+	inset-inline: auto !important;
+	min-width: unset !important;
+}
+
+/* remove radius from right-click popup */
+menupopup, panel { --panel-border-radius: 0px !important; }
+menu, menuitem, menucaption { border-radius: 0px !important; }
+
+/* no stupid large buttons in right-click menu */
+menupopup > #context-navigation { display: none !important; }
+menupopup > #context-sep-navigation { display: none !important; }
 
 /* --- DEBLOAT NAVBAR ----------------------------------- */
 
@@ -82,12 +113,7 @@ toolbar .toolbarbutton-1 { padding: 0 0 !important; }
 	border: none !important;
 }
 
-#nav-bar, #navigator-toolbox {
-	border-width: 0 !important;
-	--toolbar-field-focus-border-color: #262639;
-}
-
-/* weird hack to keep pop-up menus from overlapping with navbar */
+/* keep pop-up menus from overlapping with navbar */
 #widget-overflow { margin: 0 !important; }
 #appMenu-popup { margin: 0 !important; }
 #customizationui-widget-panel { margin: 0 !important; }
@@ -102,7 +128,7 @@ toolbar .toolbarbutton-1 { padding: 0 0 !important; }
 
 /* make extension icons smaller */
 #unified-extensions-view {
-	--uei-icon-size: 16px;
+	--uei-icon-size: 16px !important;
 }
 
 /* hide bloat */
@@ -139,17 +165,14 @@ toolbar .toolbarbutton-1 { padding: 0 0 !important; }
 /* --- DEBLOAT URLBAR ----------------------------------- */
 
 /* #identity-box { display: none; } */
-#pageActionButton { display: none; }
+/* #pageActionButton { display: none; } */
 #pocket-button { display: none; }
-#urlbar-zoom-button { display: none; }
+/* #urlbar-zoom-button { display: none; } */
 /* #tracking-protection-icon-container { display: none !important; } */
-/*#reader-mode-button{ display: none !important; }*/
+/* #reader-mode-button{ display: none !important; } */
 #star-button { display: none; }
 #star-button-box:hover { background: inherit !important; }
-
-/* this will remove the invisible box at the end of urlbar but also will
- * disable the Ctrl+D shortcut */
-/*#star-button-box { display: none; }*/
+#star-button-box { display: none !important; }
 
 /* Go to arrow button at the end of the urlbar when searching */
 #urlbar-go-button { display: none; }
@@ -161,7 +184,7 @@ toolbar .toolbarbutton-1 { padding: 0 0 !important; }
 
 #titlebar {
 	--proton-tab-block-margin: 0px !important;
-	--tab-block-margin: 0 !important;
+	--tab-block-margin: 0px !important;
 }
 
 #TabsToolbar, .tabbrowser-tab {
@@ -176,21 +199,28 @@ tab:not([selected="true"]) {
 }
 
 tab {
-	font-family: monospace;
-	font-weight: normal;
+	font-family: var(--tab-font, monospace);
+	font-weight: bold;
 	border: none !important;
 }
 
-/* Code for Firefox 110+ taken from: */
-/* https://support.mozilla.org/en-US/questions/1394300#answer-1565950 */
-/* Hide Tab bar with only one Tab - [110] */
+/* hide tab bar with only one tab open */
 #tabbrowser-tabs .tabbrowser-tab:only-of-type,
-#tabbrowser-tabs .tabbrowser-tab:only-of-type + #tabbrowser-arrowscrollbox-periphery{ display:none !important; }
-#tabbrowser-tabs, #tabbrowser-arrowscrollbox {min-height:0!important;}
-#alltabs-button {display:none !important;}
+#tabbrowser-tabs .tabbrowser-tab:only-of-type + #tabbrowser-arrowscrollbox-periphery { 
+	display:none !important;
+}
+#tabbrowser-tabs, #tabbrowser-arrowscrollbox {
+	min-height:0!important;
+}
+#alltabs-button {
+	display:none !important;
+}
 
 /* safari style tab width */
-.tabbrowser-tab[fadein] { max-width: 100vw !important; border: none }
+.tabbrowser-tab[fadein] {
+	max-width: 100vw !important;
+	border: none
+}
 
 /* Hide close button on tabs */
 #tabbrowser-tabs .tabbrowser-tab .tab-close-button { display: none !important; }
@@ -240,69 +270,52 @@ tab {
 #alltabs-button { display: none !important }
 
 /* fix displaying of pinned tabs on overflow */
-#tabbrowser-tabs:not([secondarytext-unsupported]) .tab-label-container { height: var(--tab-min-height) !important; }
+#tabbrowser-tabs:not([secondarytext-unsupported]) .tab-label-container {
+	height: var(--tab-min-height) !important;
+}
 
 /* remove overflow scroll buttons */
 #scrollbutton-up, #scrollbutton-down { display: none !important; }
 
-/* --- AUTOHIDE URLBAR ---------------------------------- */
+/* remove new tab button */
+#tabs-newtab-button {
+	display: none !important;
+}
 
-/* hide urlbar unless focused */
+/* hide private browsing indicator */
+/* #private-browsing-indicator-with-label {
+ 	display: none;
+} */
+
+/* keep private window tab bar and indicator visible */ 
+#main-window[privatebrowsingmode] #tabbrowser-tabs .tabbrowser-tab {
+	display:block !important;
+}
+#main-window[privatebrowsingmode] #tabbrowser-tabs .tabbrowser-tab .tab-content:before {
+	content: var(--tab-private-icon);
+	margin-right: 1em; 
+	color: var(--tab-private-icon-colour)
+}
+#private-browsing-indicator-with-label > label { 
+	display: none;
+}
+
+/* --- AUTOHIDE NAVBAR ---------------------------------- */
+
+/* hide navbar unless focused */
 #nav-bar {
 	min-height: 0 !important;
 	max-height: 0 !important;
 	height: 0 !important;
-	/*--moz-transform: scaleY(0) !important;*/
-	/*transform: scaleY(0) !important;*/
 }
 
 /* show on focus - uncomment the line below this if you want cursor hover
  * events to trigger the navbar  */
-#titlebar:hover ~ .browser-toolbar, #nav-bar:hover, 
+#titlebar:hover ~ .browser-toolbar, #nav-bar:hover,
 #nav-bar:focus-within {
-	--moz-transform: scale(1) !important;
-	transform: scale(1) !important;
 	max-height: var(--urlbar-height-setting) !important;
 	height: var(--urlbar-height-setting) !important;
 	min-height: var(--urlbar-height-setting) !important;
+	/* add animation to transition */
+	transition: visibility, ease 0.5s, margin-top, ease 0.5s, opacity, ease 0.5s, rotate, ease 0.4s !important;
 }
-
-#navigator-toolbox:focus-within > .browser-toolbar {
-	transform: translateY(0);
-	opacity: 1;
-}
-
-/* remove new tab button */
-#tabs-newtab-button {
-     display:none !important;
-}
-
-/* remove firefox view */
-#firefox-view-button { display: none !important; }
-#tabbrowser-tabs {
-	border-inline-start: 0 !important;
-	padding-inline-start: 0 !important;
-	margin-inline-start: 0 !important;
-}
-
-/* keep private window tab bar and indicator visible */ 
-#main-window[privatebrowsingmode] #tabbrowser-tabs .tabbrowser-tab{display:block !important;}
-#main-window[privatebrowsingmode] #tabbrowser-tabs .tabbrowser-tab .tab-content:before{content: var(--tab-private-icon); margin-right: 1em; color: var(--tab-private-icon-colour)}
-#private-browsing-indicator-with-label > label { display: none; }
-
-/* show on hover */
-/* #titlebar:hover ~ .browser-toolbar,
-#nav-bar:hover,
-#nav-bar:hover + #PersonalToolbar {
-	transform: translateY(0);
-	opacity: 1;
-}
-
-#titlebar:hover~#nav-bar,
-#nav-bar:hover {
-	--moz-transform: scale(1) !important;
-	transform: scale(1) !important;
-	max-height: var(--urlbar-height-setting) !important;
-	height: var(--urlbar-height-setting) !important;
-	min-height: var(--urlbar-height-setting) !important;
-} */
