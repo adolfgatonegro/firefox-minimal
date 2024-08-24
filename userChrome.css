@@ -314,8 +314,8 @@ tab {
 
 	z-index: 1002 !important;
 	min-height: 0px !important;
-	transition: height var(--animation-easing-function) 500ms 500ms,
-		opacity var(--animation-easing-function) 500ms 500ms !important;
+	transition: height var(--animation-easing-function) 500ms 1s,
+		opacity var(--animation-easing-function) 500ms 1s !important;
 	opacity: 0 !important;
 }
 
