@@ -283,9 +283,9 @@ tab {
 }
 
 /* hide private browsing indicator */
-/* #private-browsing-indicator-with-label {
+#private-browsing-indicator-with-label {
  	display: none;
-} */
+}
 
 /* keep private window tab bar and indicator visible */ 
 #main-window[privatebrowsingmode] #tabbrowser-tabs .tabbrowser-tab {
