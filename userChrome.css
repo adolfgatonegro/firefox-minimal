@@ -4,7 +4,7 @@
 	--tab-active-fg-fallback-color: #c1c1d1;	/* color of text in an active tab without a container */
 	--tab-inactive-fg-fallback-color: #6c6c93;	/* color of text in an inactive tab without a container */
 	--urlbar-focused-bg-color: #262639;
-	--urlbar-not-focused-bg-color: #0a0a15;
+	--urlbar-not-focused-bg-color: #262639;
 
 	--tab-active-fg-fallback-color: #c1c1d1;		/* color of text in an active tab without a container */
 	--tab-inactive-fg-fallback-color: #6c6c93;		/* color of text in an inactive tab without a container */
@@ -94,7 +94,7 @@ toolbar .toolbarbutton-1 { padding: 0 0 !important; }
 	padding-top: 0 !important;
 	padding-bottom: 0 !important;
 	font-family: var(--urlbar-font, 'monospace');
-	font-size: 11px;
+	font-size: 10px;
 }
 
 #urlbar {
@@ -200,7 +200,7 @@ tab:not([selected="true"]) {
 
 tab {
 	font-family: var(--tab-font, monospace);
-	font-weight: bold;
+	font-weight: normal;
 	border: none !important;
 }
 
@@ -302,20 +302,48 @@ tab {
 
 /* --- AUTOHIDE NAVBAR ---------------------------------- */
 
-/* hide navbar unless focused */
 #nav-bar {
-	min-height: 0 !important;
-	max-height: 0 !important;
-	height: 0 !important;
+	position: absolute !important;
+	top: var(--urlbar-height-setting) !important; /* tab height */
+	left: 0px !important;
+	right: 0px !important;
+	height: 0px !important;
+	border-radius: 0px !important;
+
+	box-shadow: none !important;
+
+	z-index: 1002 !important;
+	min-height: 0px !important;
+	transition: height var(--animation-easing-function) 500ms 500ms,
+		opacity var(--animation-easing-function) 500ms 500ms !important;
+	opacity: 0 !important;
 }
 
-/* show on focus - uncomment the line below this if you want cursor hover
- * events to trigger the navbar  */
-/* #titlebar:hover ~ .browser-toolbar, #nav-bar:hover, */
+:root[customizing] #nav-bar,
+#navigator-toolbox:hover #nav-bar,
 #nav-bar:focus-within {
-	max-height: var(--urlbar-height-setting) !important;
 	height: var(--urlbar-height-setting) !important;
-	min-height: var(--urlbar-height-setting) !important;
-	/* add animation to transition */
-	transition: visibility, ease 0.5s, margin-top, ease 0.5s, opacity, ease 0.5s, rotate, ease 0.4s !important;
+	opacity: 100 !important;
+	transition: height var(--animation-easing-function) 500ms 100ms,
+		opacity var(--animation-easing-function) 500ms 100ms !important;
+}
+
+#urlbar[breakout] {
+	top: unset !important;
+}
+
+#nav-bar:focus-within #urlbar-input {
+	height: var(--urlbar-height-setting) !important;
+}
+
+#urlbar-input-container {
+	width: 100% !important;
+	height: 100% !important;
+}
+
+.urlbarView {
+	position: absolute !important;
+	background-color: var(--urlbar-focused-bg-color) !important;
+	border-radius: 0px !important;
+	box-shadow: none !important;
 }
