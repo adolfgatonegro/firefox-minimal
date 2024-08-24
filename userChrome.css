@@ -1,6 +1,6 @@
 :root {
 	--tab-active-bg-color: #262639;		/* background color of an active tab */
-	--tab-inactive-bg-color: #0a0a15;		/* background color of an inactive tab */
+	--tab-inactive-bg-color: #1a1a26;		/* background color of an inactive tab */
 	--tab-active-fg-fallback-color: #c1c1d1;	/* color of text in an active tab without a container */
 	--tab-inactive-fg-fallback-color: #6c6c93;	/* color of text in an inactive tab without a container */
 	--urlbar-focused-bg-color: #262639;
@@ -19,6 +19,7 @@
 	/* try increasing if you encounter problems */
 	--urlbar-height-setting: 24px;
 	--tab-min-height: 25px !important;
+	--navbar-timeout: 750ms;
 
 	/* I don't recommend you touch this unless you know what you're doing */
 	--arrowpanel-menuitem-padding: 2px !important;
@@ -314,8 +315,8 @@ tab {
 
 	z-index: 1002 !important;
 	min-height: 0px !important;
-	transition: height var(--animation-easing-function) 500ms 1s,
-		opacity var(--animation-easing-function) 500ms 1s !important;
+	transition: height var(--animation-easing-function) 500ms var(--navbar-timeout),
+		opacity var(--animation-easing-function) 500ms var(--navbar-timeout) !important;
 	opacity: 0 !important;
 }
 
